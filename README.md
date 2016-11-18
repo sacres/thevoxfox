@@ -1,24 +1,43 @@
-### Installation
+# The VoxFox
 
-#### Local
+## Installation
+
+We provide a basic config file, it is located at config.example.ini. Please rename it to config.ini
+
+### Local
 
 `pip3 install -r ./requirements.txt`
 
-#### venv
+### venv
 
-Coming soon
+```bash
+virtualenv --python=/usr/bin/python3 venv
+source venv/bin/activate
+pip3 install -r ./requirements.txt
+```
 
-### Running
+## Running
 
 If you decide to do this in Docker, local installation is not necessary.
 
-#### Docker
+### With Docker
 
 `./run.sh SomeLocalContainerName` will start a local python:3 container, mount the repo into /usr/src/legobot, install deps, and then run the chatbot.py script.
 
-#### Local
+### Without Docker
 
-`pip3 install -r ./requirements.txt && python3 ./chatbot.py`
+If you don't use virtualenv you can directly start the bot:
+
+```bash
+python3 chatbot.py
+```
+
+In case of virtualenv you first have to activate it:
+
+```bash
+source venv/bin/activate
+python3 chatbot.py
+```
 
 ### Setting configuration
 
