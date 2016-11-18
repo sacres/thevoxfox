@@ -3,6 +3,7 @@ import threading
 import configparser
 from Legobot.Lego import Lego
 from Local.Roll import Roll
+from Local.Msync import Audit
 
 from Legobot.Connectors.IRC import IRC
 from Legobot.Legos.Help import Help
@@ -36,3 +37,4 @@ baseplate_proxy.add_child(IRC,
                           password=config['freenode']['password'])
 baseplate_proxy.add_child(Help)
 baseplate_proxy.add_child(Roll)
+baseplate_proxy.add_child(Audit)
