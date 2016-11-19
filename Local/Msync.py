@@ -25,13 +25,17 @@ class Audit(Lego):
             self.reply(message, response, opts)
 
         elif arg == "getver":
+            modname = None
             try:
                 modname = message['text'].split()[2]
+            except IndexError as e:
+                self.reply(message, "Could not find a module name in your request.", opts)
+
+            if modname == None:
+                self.reply(message,self.get_help(),opts)
+            else:
                 response = self.get_single_version(modname)
                 self.reply(message,response,opts)
-            except Exception as e:
-                self.reply(message, "womp womp :/ unable to get version.", opts)
-                logger.exception('Caught exception in !msync:' + str(e))
         return
 
     def get_name(self):
@@ -39,7 +43,7 @@ class Audit(Lego):
 
     def get_help(self):
         return 'Discover information about the status of modulesync on managed\
-        repositories. Usage: !msync [getver modulename].'
+ repositories. Usage: !msync [getver modulename].'
 
     def get_current_msync(self):
         try:
@@ -61,7 +65,7 @@ class Audit(Lego):
         try:
             msync_ver = requests.get(raw_url + modname + '/master/.msync.yml')
             msync_ver = msync_ver.text
-            return msync_ver.strip('\n')
+            return "%s %s " % (modname, msync_ver.strip('\n'))
         except:
             return 'Could not find a module to query :/'
 
@@ -72,6 +76,7 @@ class Audit(Lego):
             arg = None
         elif len(message['text'].split()) > 1:
             arg = message['text'].split()[1]
+
         return arg
 
     def _compare_semver(self,releases):
