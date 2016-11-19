@@ -25,7 +25,7 @@ class Audit(Lego):
             try:
                 modname = message['text'].split()[2]
                 response = self.get_single_version(modname)
-                self.reply(message,response)
+                self.reply(message,response,opts)
             except Exception as e:
                 self.reply(message, "womp womp :/ unable to get version.", opts)
                 logger.exception('Caught exception in !msync:' + str(e))
