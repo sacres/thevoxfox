@@ -1,6 +1,5 @@
 import requests
 import logging
-import json
 import semver
 from Legobot.Lego import Lego
 
@@ -44,13 +43,15 @@ class Audit(Lego):
 
     def get_current_msync(self):
         try:
-            msync_tags = requests.get("%srepos/voxpupuli/modulesync_config/tags" % api_url)
+            msync_tags = requests.get("%srepos/voxpupuli/modulesync_config/tags" \
+                                      % api_url)
             if msync_tags.status_code == requests.codes.ok:
                 releases = msync_tags.json()
                 latest_release = self._compare_semver(releases)
                 return latest_release
             else:
-                return "Something happened, boss. Got a %s " % str(msync_tags.status_code)
+                return "Something happened, boss. Got a %s " % \
+                    str(msync_tags.status_code)
         except Exception as e:
             logger.exception('Caught exception in !msync:' + str(e))
             return "Unable to fetch latest msync version."
