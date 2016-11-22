@@ -7,7 +7,8 @@ logger = logging.getLogger(__name__)
 
 class Puppet3(Lego):
     def listening_for(self, message):
-        return message['text'].split()[0] == '!puppet3'
+        cmds = ['!puppet3', '!rnelson0']
+        return message['text'].split()[0] in cmds
 
     def handle(self, message):
         opts = None
