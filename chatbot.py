@@ -4,6 +4,7 @@ import configparser
 from Legobot.Lego import Lego
 from Local.Roll import Roll
 from Local.Msync import Audit
+from Local.Puppet3 import Puppet3
 
 from Legobot.Connectors.IRC import IRC
 from Legobot.Legos.Help import Help
@@ -38,3 +39,4 @@ baseplate_proxy.add_child(IRC,
 baseplate_proxy.add_child(Help)
 baseplate_proxy.add_child(Roll)
 baseplate_proxy.add_child(Audit)
+baseplate_proxy.add_child(Puppet3)
