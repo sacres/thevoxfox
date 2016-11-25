@@ -6,6 +6,7 @@ from Local.Roll import Roll
 from Local.Msync import Audit
 from Local.Puppet3 import Puppet3
 from Local.WikipediaTopFinder import WikipediaTopFinder
+from Local.Factoids import Factoids
 
 from Legobot.Connectors.IRC import IRC
 from Legobot.Legos.Help import Help
@@ -42,3 +43,4 @@ baseplate_proxy.add_child(Roll)
 baseplate_proxy.add_child(Audit)
 baseplate_proxy.add_child(Puppet3)
 baseplate_proxy.add_child(WikipediaTopFinder)
+baseplate_proxy.add_child(Factoids)
