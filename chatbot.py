@@ -31,7 +31,7 @@ baseplate_proxy = baseplate.proxy()
 
 # Add children
 baseplate_proxy.add_child(IRC,
-                          channels=['#voxpupuli'],
+                          channels=['#voxpupuli', '#puppet'],
                           nickname=config['freenode']['username'],
                           server=config['freenode']['host'],
                           port=int(config['freenode']['port']),
