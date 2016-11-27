@@ -14,8 +14,12 @@ class WikipediaTopFinder(Lego):
         except IndexError:
             logger.error('Could not identify message source in message: %s' % str(message))
         base_url = 'https://en.wikipedia.org/w/index.php?search='
-        search_params = '%20'.join(message['text'].split()[1:])
-        r = requests.get(base_url + search_params)
+        search_params = ' '.join(message['text'].split()[1:])
+        if not search_params:
+            self.reply(message, "You need to enter a search string ... ", opts)
+            return
+        else:
+            r = requests.get(base_url + search_params)
         if r.status_code == 200:
             self.reply(message, "I found this: " + r.url, opts)
         else:
@@ -26,5 +30,5 @@ class WikipediaTopFinder(Lego):
 
     def get_help(self):
         help_text = "Wikipedia Top Finder. Search Wikipedia. " \
-                    "Usage: !wtf <search string>"
+                "Usage: !wtf <search string>"
         return help_text
