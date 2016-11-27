@@ -5,7 +5,7 @@ logger = logging.getLogger(__name__)
 
 class Factoids(Lego):
     def listening_for(self, message):
-        cmds = ['!shrug', '!tableflip', '!nope', '!doit', '!wat', '!@']
+        cmds = ['!shrug', '!tableflip', '!nope', '!doit', '!wat', '!@', '!source']
         return message['text'].split()[0] in cmds
 
     def handle(self, message):
@@ -30,6 +30,8 @@ class Factoids(Lego):
         elif command == '!@':
             txt = 'IRC is not Twitter – please do not use @name to address people. use name,' \
             ' or name: instead. Using @ also prevents you from tab-completing nicks in your IRC client'
+        elif command == '!source':
+            txt == 'you can find me on https//:github.com/voxpupuli/thevoxfox'
         self.reply(message, txt, opts)
 
 
@@ -38,5 +40,5 @@ class Factoids(Lego):
 
     def get_help(self):
         help_text = "collection of nice factoids (static reponses). " \
-                "Usage: !shrug, !tableflip, !nope, !doit, !wat, !@ "
+                "Usage: !shrug, !tableflip, !nope, !doit, !wat, !@, !source "
         return help_text
