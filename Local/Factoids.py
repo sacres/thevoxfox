@@ -31,7 +31,7 @@ class Factoids(Lego):
             txt = 'IRC is not Twitter – please do not use @name to address people. use name,' \
             ' or name: instead. Using @ also prevents you from tab-completing nicks in your IRC client'
         elif command == '!source':
-            txt == 'you can find me on https//:github.com/voxpupuli/thevoxfox'
+            txt = "You can find me on: 'https://github.com/voxpupuli/thevoxfox'"
         elif command == '!deal':
             txt = 'https://rib.aibor.de/images/dealwithit.gif'
         self.reply(message, txt, opts)
