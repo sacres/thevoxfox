@@ -1,6 +1,9 @@
 import requests
 
 from Legobot.Lego import Lego
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class WikipediaTopFinder(Lego):

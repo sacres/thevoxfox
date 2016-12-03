@@ -2,3 +2,4 @@ legobot==1.0.0
 dice
 requests
 semver
+pyflakes

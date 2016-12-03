@@ -1,5 +1,4 @@
 import logging
-import dice
 import datetime
 from Legobot.Lego import Lego
 
