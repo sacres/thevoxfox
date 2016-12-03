@@ -4,7 +4,7 @@ import logging
 
 import requests
 
-from Legobot.Message import *
+from Legobot.Message import Message,Metadata
 from Legobot.Lego import Lego
 
 logger = logging.getLogger(__name__)

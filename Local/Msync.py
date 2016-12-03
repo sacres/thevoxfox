@@ -28,7 +28,7 @@ class Audit(Lego):
             modname = None
             try:
                 modname = message['text'].split()[2]
-            except IndexError as e:
+            except IndexError:
                 self.reply(message, "Could not find a module name in your request.", opts)
 
             if modname == None:
