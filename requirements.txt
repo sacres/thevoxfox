@@ -3,3 +3,4 @@ dice
 requests
 semver
 pyflakes
+bandit

@@ -37,7 +37,7 @@ class BingImageSearch(Lego):
         if len(urls) == 0:
             url = 'Nothing found :('
         else:
-            url = random.choice(urls)
+            url = random.choice(urls) # nosec
 
         metadata = Metadata(source=self).__dict__
         metadata['opts'] = opts
