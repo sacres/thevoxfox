@@ -22,7 +22,7 @@ class Factoids(Lego):
         elif command == '!tableflip':
             txt = '(╯°O°）╯︵ ┻━┻'
         elif command == '!nope':
-            txt = 'http://i3.kym-cdn.com/photos/images/original/000/727/925/2b5.gif'
+            txt = 'https://p.bastelfreak.de/Pfkh/'
         elif command == '!doit':
             txt = 'Dooooooooo eeeeeeeettttttttt'
         elif command == '!wat':
@@ -33,11 +33,11 @@ class Factoids(Lego):
         elif command == '!source':
             txt = "You can find me on: 'https://github.com/voxpupuli/thevoxfox'"
         elif command == '!deal':
-            txt = 'https://rib.aibor.de/images/dealwithit.gif'
+            txt = 'https://p.bastelfreak.de/dQ4S/'
         elif command == '!awesome':
-            txt = 'https://rib.aibor.de/images/awesome.jpg'
+            txt = 'https://p.bastelfreak.de/tgnla/'
         elif command == '!nuke':
-            txt = 'http://i3.kym-cdn.com/photos/images/original/000/036/935/nuke-it-from-orbit.jpg'
+            txt = 'https://p.bastelfreak.de/1MQ/'
         elif command == '!stats':
             txt = 'http://voxpupuli.bastelfreak.de/'
         self.reply(message, txt, opts)
