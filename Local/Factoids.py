@@ -5,7 +5,7 @@ logger = logging.getLogger(__name__)
 
 class Factoids(Lego):
     def listening_for(self, message):
-        cmds = ['!shrug', '!tableflip', '!nope', '!doit', '!wat', '!@', '!source', '!deal', '!awesome']
+        cmds = ['!shrug', '!tableflip', '!nope', '!doit', '!wat', '!@', '!source', '!deal', '!awesome', '!nuke', '!stats']
         return message['text'].split()[0] in cmds
 
     def handle(self, message):
@@ -36,6 +36,10 @@ class Factoids(Lego):
             txt = 'https://rib.aibor.de/images/dealwithit.gif'
         elif command == '!awesome':
             txt = 'https://rib.aibor.de/images/awesome.jpg'
+        elif command == '!nuke':
+            txt = 'http://i3.kym-cdn.com/photos/images/original/000/036/935/nuke-it-from-orbit.jpg'
+        elif command == '!stats':
+            txt = 'http://voxpupuli.bastelfreak.de/'
         self.reply(message, txt, opts)
 
 
@@ -44,5 +48,5 @@ class Factoids(Lego):
 
     def get_help(self):
         help_text = "collection of nice factoids (static reponses). " \
-                "Usage: !shrug, !tableflip, !nope, !doit, !wat, !@, !source, !deal, !awesome "
+                "Usage: !shrug, !tableflip, !nope, !doit, !wat, !@, !source, !deal, !awesome, !nuke, !stats "
         return help_text
