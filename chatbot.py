@@ -9,6 +9,7 @@ from Local.Msync import Audit
 from Local.Puppet3 import Puppet3
 from Local.WikipediaTopFinder import WikipediaTopFinder
 from Local.Factoids import Factoids
+from Local.lmgtfy import lmgtfy
 
 config = configparser.ConfigParser()
 config.read('config.ini')
