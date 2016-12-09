@@ -8,7 +8,8 @@ class Factoids(Lego):
     """Class to hold all factoids"""
     def listening_for(self, message):
         """Checks if the message contains a command that we need to execute"""
-        cmds = ['!shrug', '!tableflip', '!nope', '!doit', '!wat', '!@', '!source', '!deal', '!awesome', '!nuke', '!stats']
+        cmds = ['!shrug', '!tableflip', '!nope', '!doit', '!wat', '!@', '!source', '!deal', \
+                '!awesome', '!nuke', '!stats', '!docs']
         return message['text'].split()[0] in cmds
 
     def handle(self, message):
@@ -44,6 +45,8 @@ class Factoids(Lego):
             txt = 'https://p.bastelfreak.de/1MQ/'
         elif command == '!stats':
             txt = 'http://voxpupuli.bastelfreak.de/'
+        elif command == '!docs':
+            txt = 'https://voxpupuli.org/docs/'
         self.reply(message, txt, opts)
 
 
@@ -54,5 +57,6 @@ class Factoids(Lego):
     def get_help(self):
         """Prints a useful help message into the channel"""
         help_text = "collection of nice factoids (static reponses). " \
-                "Usage: !shrug, !tableflip, !nope, !doit, !wat, !@, !source, !deal, !awesome, !nuke, !stats "
+                "Usage: !shrug, !tableflip, !nope, !doit, !wat, !@, !source, !deal, !awesome, " \
+                "!nuke, !stats, !docs "
         return help_text
