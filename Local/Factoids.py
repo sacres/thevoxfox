@@ -1,14 +1,18 @@
+"""Simple file to deal with static factoids"""
 import logging
 from Legobot.Lego import Lego
 
 logger = logging.getLogger(__name__)
 
 class Factoids(Lego):
+    """Class to hold all factoids"""
     def listening_for(self, message):
+        """Checks if the message contains a command that we need to execute"""
         cmds = ['!shrug', '!tableflip', '!nope', '!doit', '!wat', '!@', '!source', '!deal', '!awesome', '!nuke', '!stats']
         return message['text'].split()[0] in cmds
 
     def handle(self, message):
+        """Execute the needed command"""
         opts = None
         logger.info(message)
         try:
@@ -44,9 +48,11 @@ class Factoids(Lego):
 
 
     def get_name(self):
+        """Returns the name of this class"""
         return 'factoids'
 
     def get_help(self):
+        """Prints a useful help message into the channel"""
         help_text = "collection of nice factoids (static reponses). " \
                 "Usage: !shrug, !tableflip, !nope, !doit, !wat, !@, !source, !deal, !awesome, !nuke, !stats "
         return help_text
