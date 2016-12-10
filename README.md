@@ -61,7 +61,7 @@ ExecStart=/home/$USER/thevoxfox/venv/bin/python3 /home/$USER/thevoxfox/chatbot.p
 PrivateTmp=true
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
 ```
 
 You can now start/stop/restart/status the bot with:
