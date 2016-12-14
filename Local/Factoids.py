@@ -17,7 +17,7 @@ class Factoids(Lego):
             Bool: Returns true if the first word in the message is a command for this class
         """
         cmds = ['!shrug', '!tableflip', '!nope', '!doit', '!wat', '!@', '!source', '!deal', \
-                '!awesome', '!nuke', '!stats', '!docs']
+                '!awesome', '!nuke', '!stats', '!docs', '!http', '!no']
         return message['text'].split()[0] in cmds
 
     def handle(self, message):
@@ -25,7 +25,7 @@ class Factoids(Lego):
         Args:
             self:
             message: The complete line/message that comes from an IRC channel
-        
+
         Returns:
             string: Returns the suitable factoid"""
         opts = None
@@ -61,6 +61,10 @@ class Factoids(Lego):
             txt = 'http://voxpupuli.bastelfreak.de/'
         elif command == '!docs':
             txt = 'https://voxpupuli.org/docs/'
+        elif command == '!http':
+            txt = 'Please supply the full URL! Some of us are lazy'
+        elif command == '!no':
+            txt = 'https://blag.esotericsystems.at/igor/says/no'
         self.reply(message, txt, opts)
 
 
@@ -76,14 +80,14 @@ class Factoids(Lego):
 
     def get_help(self):
         """Prints a useful help message into the channel
-        
+
         Args:
             self:
-                
+
         Returns:
             String: A help message that explains this class
         """
         help_text = "collection of nice factoids (static reponses). " \
                 "Usage: !shrug, !tableflip, !nope, !doit, !wat, !@, !source, !deal, !awesome, " \
-                "!nuke, !stats, !docs "
+                "!nuke, !stats, !docs, !http, !no "
         return help_text
