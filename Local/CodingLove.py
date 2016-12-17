@@ -14,7 +14,7 @@ class CodingLove(Lego):
             target = message['metadata']['source_channel']
             opts = {'target':target}
         except IndexError:
-            logger.error('Could not identify message source in message: %s' % str(message))
+            logger.error('Could not identify message source in message: {0!s}'.format(str(message)))
         base_url = 'http://thecodinglove.com/random'
         r = requests.get(base_url)
         if r.status_code == requests.codes.ok:

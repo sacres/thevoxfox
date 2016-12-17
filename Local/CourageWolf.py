@@ -13,7 +13,7 @@ class Encourage(Lego):
 
     def listening_for(self, message):
          if 'encourage me' in message['text']:
-             logger.info('Lego %s activated' % self.get_name())
+             logger.info('Lego {0!s} activated'.format(self.get_name()))
              return True
 
     def handle(self, message):
@@ -23,7 +23,7 @@ class Encourage(Lego):
             target = message['metadata']['source_channel']
             opts = {'target':target}
         except IndexError:
-            logger.error('Could not identify message source in message: %s' % str(message))
+            logger.error('Could not identify message source in message: {0!s}'.format(str(message)))
         txt = self.get_single_quote(self.get_all_quotes(self.e))
         self.reply(message, txt, opts)
 
