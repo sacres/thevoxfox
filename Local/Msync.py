@@ -80,8 +80,9 @@ class Audit(Lego):
                 modules = [module[2:] for module in modules]
                 return modules
         except:
+            logger.error('Unable to reach modulesync_config repo!')
             # Helllooooooo antipattern!
-            pass
+            return ['']
 
     def _compare_semver(self,releases):
         latest = '0.0.0'
