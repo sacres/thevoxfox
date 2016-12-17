@@ -1,6 +1,8 @@
 import requests
 import logging
 import semver
+import re
+import json
 from Legobot.Lego import Lego
 
 logger = logging.getLogger(__name__)
@@ -20,20 +22,15 @@ class Audit(Lego):
                          % str(message))
 
         # A python workaround for case statements
-        functions = {'getver':self.get_single_version,
+        dispatcher = {'getver':self._get_single_version,
                      'olderthan':self._compare_to_version,
                      'newerthan':self._compare_to_version,
                      'current':self._compare_to_version}
 
-        argv = message.split()
-
-        if len(argv) > 1:
-            command = argv[1]
-            response = functions[command(argv)]
-        else:
-            # No command given
-            response = self._get_current_msync
-        self.reply(message,response,opts)
+        args = message['text'].split()
+        command = args[1]
+        response = dispatcher[command](*args)
+        self.reply(message,str(response),opts)
 
     def get_name(self):
         return 'msync'
@@ -58,29 +55,29 @@ class Audit(Lego):
             return "Unable to fetch latest msync version."
 
     def _get_all_modules(self):
-    try:
-        slug = 'modulesync_config/master/managed_modules.yml'
-        all_modules = requests.get(raw_url + slug)
-        if all_modules.status_code == requests.codes.ok:
-            yaml_artifacts = ['---','- ','','...','# vim: syntax=yaml']
-            modules = all_modules.text
-            modules = modules.split('\n')
-            modules = [module.strip() for module in modules]
-            modules = [module for module in modules if module not in yaml_artifacts]
-            modules = [module[2:] for module in modules]
-            return modules
-    except:
-        # Helllooooooo antipattern!
-        pass
+        try:
+            slug = 'modulesync_config/master/managed_modules.yml'
+            all_modules = requests.get(raw_url + slug)
+            if all_modules.status_code == requests.codes.ok:
+                yaml_artifacts = ['---','- ','','...','# vim: syntax=yaml']
+                modules = all_modules.text
+                modules = modules.split('\n')
+                modules = [module.strip() for module in modules]
+                modules = [module for module in modules if module not in yaml_artifacts]
+                modules = [module[2:] for module in modules]
+                return modules
+        except:
+            # Helllooooooo antipattern!
+            pass
 
     def _compare_semver(self,releases):
-    latest = '0.0.0'
-    for release in releases:
-        logger.debug('Comparing: %s and %s' % (latest,release['name']))
-        if semver.compare(latest,release['name']) == -1:
-            latest = str(release['name'])
-            logger.debug('Found a newer release: %s' % latest)
-    return latest
+        latest = '0.0.0'
+        for release in releases:
+            logger.debug('Comparing: %s and %s' % (latest,release['name']))
+            if semver.compare(latest,release['name']) == -1:
+                latest = str(release['name'])
+                logger.debug('Found a newer release: %s' % latest)
+        return latest
 
     def _compare_to_version(self,*args,**kwargs):
         try:
@@ -100,7 +97,8 @@ class Audit(Lego):
                 if modver != False:
                     if semver.compare(modver,current_msync) == 0: # semvers matched
                         matching_modules.append(module)
-            return matching_modules
+            report_url = self._gist(matching_modules)
+            return report_url
 
         elif status == 'olderthan' or status == 'newerthan':
             try:
@@ -115,12 +113,14 @@ class Audit(Lego):
             except ValueError:
                 return "Invalid semver"
             for module in all_modules:
-                modver = get_single_version('','',module) # Workaround until **kwargs is worked out
+                modver = self._get_single_version('','',module) # Workaround until **kwargs is worked out
                 if modver != False:
                     comparison = semver.compare(modver,compare_version)
                     if comparison == compare[status] or comparison == 0:
                         matching_modules.append(module)
-            return matching_modules
+
+            report_url = self._gist(matching_modules)
+            return report_url
         else:
             return 'How did you get here?'
 
@@ -154,7 +154,20 @@ class Audit(Lego):
             return msync_ver.group(0)
         else:
             logger.debug('Got a bad return code from module %s: %s' % (modname,msync_ver.status_code))
-            return False
+            return '0.0.0'
 
-    def _pastebin(self,text):
-        return
+    def _gist(self,text):
+        # input is a list. we want one module per line
+        text = '\n'.join(text)
+        body = {'descrption':'Voxpupuli modulesync report',
+                'files':{
+                    'report.txt':{
+                        'content': text
+                    }
+                }
+                }
+        r = requests.post('https://api.github.com/gists', json.dumps(body))
+        logger.debug('_gist response code: %s' % r.status_code)
+        r = r.json()
+        logger.debug(r)
+        return r['html_url']
