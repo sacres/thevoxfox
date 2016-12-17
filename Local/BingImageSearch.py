@@ -25,7 +25,7 @@ class BingImageSearch(Lego):
             target = message['metadata']['source_channel']
             opts = {'target':target}
         except IndexError:
-            logger.error('Could not identify message source in message: %s' % str(message))
+            logger.error('Could not identify message source in message: {0!s}'.format(str(message)))
         query = ' '.join(message['text'].split()[1:])
         query = query.replace(' ', '%20')
         req_url = self._make_url(query)

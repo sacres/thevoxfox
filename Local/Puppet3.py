@@ -16,15 +16,15 @@ class Puppet3(Lego):
             target = message['metadata']['source_channel']
             opts = {'target':target}
         except IndexError:
-            logger.error('Could not identify message source in message: %s' % str(message))
+            logger.error('Could not identify message source in message: {0!s}'.format(str(message)))
         eol = datetime.datetime(2016, 12, 31)
         now = datetime.datetime.now()
         delta = eol - now
         days = delta.days
         if days > 0:
-            txt = "Puppet 3 is End of Life in %s Days" % days
+            txt = "Puppet 3 is End of Life in {0!s} Days".format(days)
         else:
-            txt = "Puppet 3 is End of Life! Fly you fools!" % days
+            txt = "Puppet 3 is End of Life! Fly you fools!".format(*days)
         self.reply(message, txt, opts)
 
 

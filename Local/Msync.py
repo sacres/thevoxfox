@@ -16,8 +16,7 @@ class Audit(Lego):
             target = message['metadata']['source_channel']
             opts = {'target':target}
         except IndexError:
-            logger.error('Could not identify message source in message: %s' \
-                         % str(message))
+            logger.error('Could not identify message source in message: {0!s}'.format(str(message)))
         arg = self.parse_args(message)
 
         if arg == None:
@@ -47,15 +46,14 @@ class Audit(Lego):
 
     def get_current_msync(self):
         try:
-            msync_tags = requests.get("%srepos/voxpupuli/modulesync_config/tags" \
-                                      % api_url)
+            msync_tags = requests.get("{0!s}repos/voxpupuli/modulesync_config/tags".format(api_url))
             if msync_tags.status_code == requests.codes.ok:
                 releases = msync_tags.json()
                 latest_release = self._compare_semver(releases)
                 return latest_release
             else:
-                return "Something happened, boss. Got a %s " % \
-                    str(msync_tags.status_code)
+                return "Something happened, boss. Got a {0!s} ".format( \
+                    str(msync_tags.status_code))
         except Exception as e:
             logger.exception('Caught exception in !msync:' + str(e))
             return "Unable to fetch latest msync version."
@@ -65,7 +63,7 @@ class Audit(Lego):
         try:
             msync_ver = requests.get(raw_url + modname + '/master/.msync.yml')
             msync_ver = msync_ver.text
-            return "%s %s " % (modname, msync_ver.strip('\n'))
+            return "{0!s} {1!s} ".format(modname, msync_ver.strip('\n'))
         except:
             return 'Could not find a module to query :/'
 
@@ -82,8 +80,8 @@ class Audit(Lego):
     def _compare_semver(self,releases):
         latest = '0.0.0'
         for release in releases:
-            logger.debug('Comparing: %s and %s' % (latest,release['name']))
+            logger.debug('Comparing: {0!s} and {1!s}'.format(latest, release['name']))
             if semver.compare(latest,release['name']) == -1:
                 latest = str(release['name'])
-                logger.debug('Found a newer release: %s' % latest)
+                logger.debug('Found a newer release: {0!s}'.format(latest))
         return latest
