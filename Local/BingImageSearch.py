@@ -4,7 +4,7 @@ import logging
 
 import requests
 
-from Legobot.Message import *
+from Legobot.Message import Message,Metadata
 from Legobot.Lego import Lego
 
 logger = logging.getLogger(__name__)
@@ -37,7 +37,7 @@ class BingImageSearch(Lego):
         if len(urls) == 0:
             url = 'Nothing found :('
         else:
-            url = random.choice(urls)
+            url = random.choice(urls) # nosec
 
         metadata = Metadata(source=self).__dict__
         metadata['opts'] = opts

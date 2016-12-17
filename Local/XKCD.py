@@ -37,7 +37,7 @@ class XKCD(Lego):
             comic_id = message['text'].split()[1]
             logger.debug('Found an argument: %s' % str(id))
         except IndexError:
-            comid_id = None
+            comic_id = None
             logger.debug('No args provided. Setting "id" to None')
         logger.debug('_parse_args comic_id: %s' % comic_id)
         return comic_id
@@ -73,8 +73,7 @@ class XKCD(Lego):
             altText = comic.group(2).replace("&#39;", "'")
             response = "%s %s" % (altText, "http:" + comic.group(1))
         else:
-            logger.error('Unable to find comic on page: %s' % url)
-            logger.error('HTTP GET response code: %s' % webpage.status_code)
+            logger.error('Unable to find comic')
             response = "Unable to find a comic"
         return response
 

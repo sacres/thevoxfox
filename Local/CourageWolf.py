@@ -37,7 +37,7 @@ class Encourage(Lego):
         return help_text
 
     def get_single_quote(self,quotes):
-        quote = random.choice(quotes)
+        quote = random.choice(quotes) # nosec
         quote = quote.strip()
         logger.info(quote)
         return quote
