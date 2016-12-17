@@ -51,21 +51,6 @@ class Audit(Lego):
                 'repositories. Usage: !msync. Fore more info, see the docs at '\
                 'https://github.com/voxpupuli/thevoxfox/tree/master/docs/msync.md'
 
-    def _get_current_msync(self,*args,**kwargs):
-        try:
-            msync_tags = requests.get("%srepos/voxpupuli/modulesync_config/tags" \
-                                      % api_url)
-            if msync_tags.status_code == requests.codes.ok:
-                releases = msync_tags.json()
-                latest_release = self._compare_semver(releases)
-                return latest_release
-            else:
-                return "Something happened, boss. Got a %s " % \
-                    str(msync_tags.status_code)
-        except Exception as e:
-            logger.exception('Caught exception in !msync:' + str(e))
-            return "Unable to fetch latest msync version."
-
     def _get_all_modules(self):
         try:
             slug = 'modulesync_config/master/managed_modules.yml'
