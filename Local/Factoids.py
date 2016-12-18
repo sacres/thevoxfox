@@ -34,7 +34,7 @@ class Factoids(Lego):
             target = message['metadata']['source_channel']
             opts = {'target':target}
         except IndexError:
-            logger.error('Could not identify message source in message: %s' % str(message))
+            logger.error('Could not identify message source in message: {0!s}'.format(str(message)))
         command = message['text'].split()[0]
         if command == '!shrug':
             txt = '¯\_(ツ)_/¯'

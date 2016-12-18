@@ -13,7 +13,7 @@ class lmgtfy(Lego):
             target = message['metadata']['source_channel']
             opts = {'target':target}
         except IndexError:
-            logger.error('Could not identify message source in message: %s' % str(message))
+            logger.error('Could not identify message source in message: {0!s}'.format(str(message)))
         base_url = 'https://lmgtfy.com/?q='
         search_params = ' '.join(message['text'].split()[1:])
         if not search_params:
