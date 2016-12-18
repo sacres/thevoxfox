@@ -20,7 +20,7 @@ class CodingLove(Lego):
         if r.status_code == requests.codes.ok:
             self.reply(message, r.url, opts)
         else:
-            self.reply(message, "I could not reach Wikipedia. Sorry.", opts)
+            self.reply(message, "I could not reach the page. Sorry.", opts)
 
     def get_name(self):
         return 'codinglove'
