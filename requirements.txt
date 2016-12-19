@@ -2,5 +2,5 @@ legobot==1.0.2
 dice==1.1.0
 requests==2.12.4
 semver==2.7.2
-pyflakes
+pyflakes==1.3.0
 bandit==1.3.0
