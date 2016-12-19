@@ -15,11 +15,11 @@ class Roll(Lego):
             target = message['metadata']['source_channel']
             opts = {'target':target}
         except IndexError:
-            logger.error('Could not identify message source in message: %s' % str(message))
+            logger.error('Could not identify message source in message: {0!s}'.format(str(message)))
         dice_string = message['text'].split()[1]
         results = dice.roll(dice_string)
         results_str = ', '.join([str(result) for result in results])
-        txt = "You Rolled: %s" % results_str
+        txt = "You Rolled: {0!s}".format(results_str)
         self.reply(message, txt, opts)
 
     def get_name(self):
