@@ -48,7 +48,7 @@ class Audit(Lego):
 
     def get_help(self):
         return 'Discover information about the status of modulesync on managed '\
-                'repositories. Usage: !msync [current|getver|olderthan|newerthan]. ' 
+                'repositories. Usage: !msync [current|getver|olderthan|newerthan]. '\
                 'For more info, see the docs at '\
                 'https://github.com/voxpupuli/thevoxfox/tree/master/docs/msync.md'
 
