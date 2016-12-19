@@ -1,5 +1,5 @@
 legobot==1.0.2
-dice
+dice==1.1.0
 requests
 semver==2.7.2
 pyflakes
