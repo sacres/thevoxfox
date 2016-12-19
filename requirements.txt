@@ -3,4 +3,4 @@ dice
 requests
 semver
 pyflakes
-bandit
+bandit==1.3.0
