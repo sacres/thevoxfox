@@ -1,4 +1,4 @@
-legobot==1.0.1
+legobot==1.0.2
 dice
 requests
 semver
