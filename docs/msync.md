@@ -1,6 +1,6 @@
 ## TheVoxFox Usage: !msync
 
-TheVoxFox accepts a small range of arguments that you can use to retrieve modulesync version statues or generate reports.
+TheVoxFox accepts a small range of arguments that you can use to retrieve modulesync version states or generate reports.
 
 Learn more about modulesync [here](https://github.com/voxpupuli/modulesync_config)
 
@@ -10,7 +10,7 @@ Using `!msync` with no args will retrieve the latest semver tag from our modules
 
 #### getver
 
-Query the last modudlesync config version applied to a specific repo.
+Query the last modulesync config version applied to a specific repo.
 
 Example: `!msync getver puppet-network`
 
