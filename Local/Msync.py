@@ -178,7 +178,7 @@ class Audit(Lego):
         modules.insert(0,'---')
         modules.insert(1,"# Query: %s" % query)
         modules.insert(2,"# %s modules found" % count)
-        modules.insert(-1,'...')
+        modules.append('...')
         report = '\n'.join(modules)
         return report
 
