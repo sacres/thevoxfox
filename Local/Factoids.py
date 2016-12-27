@@ -17,7 +17,7 @@ class Factoids(Lego):
             Bool: Returns true if the first word in the message is a command for this class
         """
         cmds = ['!shrug', '!tableflip', '!nope', '!doit', '!wat', '!@', '!source', '!deal', \
-                '!awesome', '!nuke', '!stats', '!docs', '!http', '!no']
+                '!awesome', '!nuke', '!stats', '!docs', '!http', '!no', '!dog']
         return message['text'].split()[0] in cmds
 
     def handle(self, message):
@@ -65,6 +65,8 @@ class Factoids(Lego):
             txt = 'Please supply the full URL! Some of us are lazy'
         elif command == '!no':
             txt = 'https://blag.esotericsystems.at/igor/says/no'
+        elif command == '!dog':
+            txt = 'https://p.bastelfreak.de/xtI/'
         self.reply(message, txt, opts)
 
 
@@ -89,5 +91,5 @@ class Factoids(Lego):
         """
         help_text = "collection of nice factoids (static reponses). " \
                 "Usage: !shrug, !tableflip, !nope, !doit, !wat, !@, !source, !deal, !awesome, " \
-                "!nuke, !stats, !docs, !http, !no "
+                "!nuke, !stats, !docs, !http, !no, !dog "
         return help_text
