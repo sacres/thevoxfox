@@ -90,3 +90,4 @@ ENV/
 
 # ignore the config.ini
 config.ini
+config.ini.b*

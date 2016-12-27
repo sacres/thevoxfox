@@ -6,6 +6,8 @@ We provide a basic config file, it is located at config.example.ini. Please rena
 
 ### Local
 
+*Note that python packages for this are 'pinned' in requirements.txt*
+
 `pip3 install -r ./requirements.txt`
 
 ### venv
