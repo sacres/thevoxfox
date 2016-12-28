@@ -24,7 +24,7 @@ class Puppet3(Lego):
         if days > 0:
             txt = "Puppet 3 is End of Life in %s Days" % days
         else:
-            txt = "Puppet 3 is End of Life! Fly you fools!" % days
+            txt = "Puppet 3 is End of Life! Fly you fools!"
         self.reply(message, txt, opts)
 
 
