@@ -17,14 +17,19 @@ class Puppet3(Lego):
             opts = {'target':target}
         except IndexError:
             logger.error('Could not identify message source in message: %s' % str(message))
-        eol = datetime.datetime(2016, 12, 31)
+        # EOL is end of day on 31 Dec
+        eol = datetime.datetime(2016, 12, 31,hour=23,minute=59)
         now = datetime.datetime.now()
-        delta = eol - now
-        days = delta.days
-        if days > 0:
-            txt = "Puppet 3 is End of Life in %s Days" % days
-        else:
+        if now > eol:
             txt = "Puppet 3 is End of Life! Fly you fools!"
+        else:
+            delta = eol - now
+            days = delta.days
+            hours = delta.seconds//3600
+            if days > 0:
+                txt = "Puppet 3 is End of Life in %s days" % days
+            else:
+                txt = "Puppet 3 is End of Life in %s hours. Maybe make it a New Year's resolution?" % hours
         self.reply(message, txt, opts)
 
 
