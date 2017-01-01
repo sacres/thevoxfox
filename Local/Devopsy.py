@@ -46,7 +46,7 @@ class Devopsy(Lego):
                }
 
         items = list(base.items())
-        key, val = random.choice(items)
+        key, val = random.choice(items)  # nosec
         args = ' '.join(self.message['text'].split()[1:])
         if args and 'dev' in key:
             q = urlencode({'q': args})
@@ -65,7 +65,7 @@ class Devopsy(Lego):
             results = []
 
         if results:
-            item = random.choice(results)
+            item = random.choice(results)  # nosec
             img = item.get('href')
             response = img
         else:
