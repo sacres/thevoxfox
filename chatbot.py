@@ -4,13 +4,13 @@ import configparser
 from Legobot.Lego import Lego
 from Legobot.Connectors.IRC import IRC
 from Legobot.Legos.Help import Help
-from Local.Roll import Roll
+from legos.xkcd import XKCD
+from legos.dice import Roll
+from legos.wtf import WikipediaTopFinder
+from legos.devopsy import Devopsy
 from Local.Msync import Audit
 from Local.Puppet3 import Puppet3
-from Local.WikipediaTopFinder import WikipediaTopFinder
 from Local.Factoids import Factoids
-from Local.lmgtfy import lmgtfy
-from Local.Devopsy import Devopsy
 
 config = configparser.ConfigParser()
 config.read('config.ini')
@@ -45,5 +45,5 @@ baseplate_proxy.add_child(Audit)
 baseplate_proxy.add_child(Puppet3)
 baseplate_proxy.add_child(WikipediaTopFinder)
 baseplate_proxy.add_child(Factoids)
-baseplate_proxy.add_child(lmgtfy)
 baseplate_proxy.add_child(Devopsy)
+baseplate_proxy.add_child(XKCD)
