@@ -18,7 +18,7 @@ class Factoids(Lego):
         """
         cmds = ['!shrug', '!tableflip', '!nope', '!doit', '!wat', '!@', '!source', '!deal', \
                 '!awesome', '!nuke', '!stats', '!docs', '!http', '!no', '!dog', '!cat', '!aww', \
-                '!awww', '!please', '!dance', '!slowclap']
+                '!awww', '!please', '!dance', '!slowclap', '!eyeballs']
         return message['text'].split()[0] in cmds
 
     def handle(self, message):
@@ -74,6 +74,8 @@ class Factoids(Lego):
             txt = "^('-')^ ^('-')^ v('-')v v('-')v <('-'<) (>'-')> <('-'<) (>'-')>"
         elif command == '!slowclap':
             txt = 'https://p.bastelfreak.de/yVB9/'
+        elif command == '!eyeballs':
+            txt = 'http://i2.kym-cdn.com/photos/images/original/000/282/317/50d.png'
         self.reply(message, txt, opts)
 
 
@@ -98,5 +100,5 @@ class Factoids(Lego):
         """
         help_text = "collection of nice factoids (static reponses). " \
                 "Usage: !shrug, !tableflip, !nope, !doit, !wat, !@, !source, !deal, !awesome, " \
-                "!nuke, !stats, !docs, !http, !no, !dog, !cat, !aww, !awww, !please, !slowclap, !dance"
+                "!nuke, !stats, !docs, !http, !no, !dog, !cat, !aww, !awww, !please, !slowclap, !dance, !eyeballs"
         return help_text
