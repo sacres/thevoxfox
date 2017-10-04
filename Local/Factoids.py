@@ -60,7 +60,7 @@ class Factoids(Lego):
             target = message['metadata']['source_channel']
             opts = {'target':target}
         except IndexError:
-            logger.error('Could not identify message source in message: %s' % str(message))
+            logger.error('Could not identify message source in message: %s', message)
         command = message['text'].split()[0]
         try:
             txt = FACTOIDS[command]
