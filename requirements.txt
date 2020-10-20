@@ -1,4 +1,4 @@
-Legobot==1.1.2
+Legobot==1.3.3
 semver==2.7.2
 pyflakes==1.3.0
 bandit==1.3.0
